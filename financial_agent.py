@@ -9,7 +9,7 @@ web_search_agent = Agent(
     role="Search the web for the information",
     model=Groq(id="llama3-groq-70b-8192-tool-use-preview"),
     tools=[DuckDuckGo()],
-    instructions=["Always include the source for the information"]
+    instructions=["Always include the source for the information"],
     show_tools_calls=True,
     markdown=True
 )
@@ -23,3 +23,13 @@ finance_agent = Agent(
     show_tool_calls=True,
     markdown=True
 )
+
+multi_ai_agent = Agent (
+    team=[web_search_agent, finance_agent],
+    model=Groq(id="llama-3.1-70b-versatile"),
+    instructions=["Always include the source for the information", "Use tables to display the data"],
+    show_tool_calls=True,
+    markdown=True
+)
+
+multi_ai_agent.print_response("Summarize analyst recommendations and share the latest news for NVDA", stream=True)
