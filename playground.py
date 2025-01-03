@@ -19,7 +19,7 @@ web_search_agent = Agent(
     role="Search the web for the information",
     model=Groq(id="llama3-groq-70b-8192-tool-use-preview"),
     tools=[DuckDuckGo()],
-    instructions=["Always include the source for the information"],
+    instructions=["Always include the source of the information"],
     show_tools_calls=True,
     markdown=True
 )
